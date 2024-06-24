@@ -1,0 +1,30 @@
+( |0100 -> Initial PC value address of the first byte CPU reads in
+	main memory. Indicates that following content starts at this address )
+
+|0100
+	( LIT -> It pushes the next byte in memory down onto the stack, and it
+		makes the program counter skip that byte )
+
+	( DEO -> Output the VALUE onto the DEVICE_ADDRESS:
+		- DEVICE_ADDRESS = POP_STACK
+			- 18 = device 1, port 8 -> WRITE
+		- VALUE = POP_STACK )
+
+	( https://wiki.xxiivv.com/site/ascii.html )
+
+	LIT 48 LIT 18 DEO ( H )
+	LIT 65 LIT 18 DEO ( e )
+	LIT 6c LIT 18 DEO ( l )
+	LIT 6c LIT 18 DEO ( l )
+	LIT 6f LIT 18 DEO ( o )
+	LIT 20 LIT 18 DEO ( )
+
+	( # -> LITERAL HEX RUNE: defines a 'literal hex'; it is a shorthand for the LIT instruction )
+
+	#57 #18 DEO ( W )
+	#6f #18 DEO ( o )
+	#72 #18 DEO ( r )
+	#6c #18 DEO ( l )
+	#64 #18 DEO ( d )
+
+	LIT 0a LIT 18 DEO ( \n )
