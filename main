@@ -1,0 +1,23 @@
+#!/bin/sh
+
+printUsage() (echo "Usage: $0 [run,clean]")
+
+if [ "$#" -ne 1 ]; then
+	printUsage
+elif [ "$1" = "run" ]; then
+	cd src || exit
+
+	x="$(find ./*.tal 2>/dev/null | fzf --preview 'bat --color=always {}' --preview-window=right,80%)"
+	[ -z "$x" ] && exit
+
+	x="$(echo "$x" | cut -c3- | cut -d'.' -f1)"
+	../uxn/uxnasm "$x.tal" "$x.rom" && ../uxn/uxnemu "$x.rom"
+
+	echo "run: done"
+elif [ "$1" = "clean" ]; then
+	find ./src -type f ! -name "*.tal" -exec trash {} +
+
+	echo "clean: done"
+else
+	printUsage
+fi
