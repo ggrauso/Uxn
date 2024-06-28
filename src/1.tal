@@ -26,5 +26,12 @@
 	#72 #18 DEO ( r )
 	#6c #18 DEO ( l )
 	#64 #18 DEO ( d )
+	#0a #18 DEO ( \n )
 
-	LIT 0a LIT 18 DEO ( \n )
+	( " -> RAW CHARACTER RUNE / STRING RUNE: the assembler reads the ascii character after
+		the rune, and decodes its numerical value )
+
+	LIT "E #18 DEO ( E )
+	LIT "N #18 DEO ( N )
+	LIT "D #18 DEO ( D )
+	LIT 0a #18 DEO ( \n )
